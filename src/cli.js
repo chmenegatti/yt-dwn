@@ -1,8 +1,13 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
-import { isValidYouTubeUrl, isPlaylistUrl, validateBatchFile, validateQuality, validateFormat, validateCategory, VALID_CATEGORIES } from './validators.js';
+import {
+  isValidYouTubeUrl, isPlaylistUrl,
+  validateBatchFile, validateQuality, validateFormat, validateCategory,
+  VALID_CATEGORIES,
+} from './validators.js';
 import { downloadVideo, downloadBatch } from './downloader.js';
 import { downloadPlaylist } from './playlists.js';
+import { downloadWithPersist } from './downloader-db.js';
 import { getVideoInfo, displayVideoInfo } from './metadata.js';
 import { listSubtitles, displaySubtitles, downloadSubtitles } from './subtitles.js';
 import { convertFormat } from './formats.js';
@@ -24,14 +29,60 @@ program
   .option('-c, --concurrency <n>', 'Downloads paralelos (batch/playlist)', (v) => parseInt(v, 10), 3)
   .option('--fragments <n>', 'Fragmentos paralelos por vídeo (mais rápido)', (v) => parseInt(v, 10), 4);
 
+// ─── Helpers ───────────────────────────────────────────────────────
+/**
+ * Se uma categoria foi fornecida, usa downloadWithPersist (salva no banco).
+ * Caso contrário, usa o downloadVideo/downloadPlaylist direto.
+ */
+async function runDownload(url, options) {
+  const {
+    quality, audioOnly, output, category, subtitles, subLang, concurrency, fragments,
+  } = options;
+  const format = options.format || (audioOnly ? 'mp3' : 'mp4');
+
+  if (category) {
+    // Com categoria → persiste no banco automaticamente
+    return downloadWithPersist(url, {
+      category,
+      quality,
+      audioOnly,
+      format,
+      outputDir: output,
+      subtitles,
+      subLang,
+      concurrency,
+      concurrentFragments: fragments,
+    });
+  }
+
+  // Sem categoria → download direto (comportamento original)
+  if (isPlaylistUrl(url) && !isValidYouTubeUrl(url)) {
+    return downloadPlaylist(url, {
+      quality,
+      audioOnly,
+      format,
+      outputDir: output,
+      concurrency,
+      concurrentFragments: fragments,
+    });
+  }
+
+  return downloadVideo(url, {
+    quality,
+    audioOnly,
+    format,
+    outputDir: output,
+    subtitles,
+    subLang,
+    concurrentFragments: fragments,
+  });
+}
+
 // ─── Comando padrão: download de URL ──────────────────────────────
 program
   .argument('[url]', 'URL do vídeo do YouTube')
-  .action(async (url, opts) => {
-    if (!url) {
-      program.help();
-      return;
-    }
+  .action(async (url) => {
+    if (!url) { program.help(); return; }
 
     const options = program.opts();
 
@@ -54,36 +105,8 @@ program
       process.exit(1);
     }
 
-    // Se for playlist, redireciona
-    if (isPlaylistUrl(url) && !isValidYouTubeUrl(url)) {
-      try {
-        await downloadPlaylist(url, {
-          quality: options.quality,
-          audioOnly: options.audioOnly,
-          format: options.format || (options.audioOnly ? 'mp3' : 'mp4'),
-          outputDir: options.output,
-          category: options.category || null,
-          concurrency: options.concurrency,
-          concurrentFragments: options.fragments,
-        });
-      } catch (err) {
-        console.log(chalk.red(`\n  ❌ ${err.message}\n`));
-        process.exit(1);
-      }
-      return;
-    }
-
     try {
-      await downloadVideo(url, {
-        quality: options.quality,
-        audioOnly: options.audioOnly,
-        format: options.format || (options.audioOnly ? 'mp3' : 'mp4'),
-        outputDir: options.output,
-        category: options.category || null,
-        subtitles: options.subtitles,
-        subLang: options.subLang,
-        concurrentFragments: options.fragments,
-      });
+      await runDownload(url, options);
     } catch (err) {
       console.log(chalk.red(`\n  ❌ ${err.message}\n`));
       process.exit(1);
@@ -112,18 +135,38 @@ program
       }
     }
 
+    const format = options.format || (options.audioOnly ? 'mp3' : 'mp4');
+
     try {
-      await downloadBatch(items, {
-        quality: options.quality,
-        audioOnly: options.audioOnly,
-        format: options.format || (options.audioOnly ? 'mp3' : 'mp4'),
-        outputDir: options.output,
-        category: options.category || null,
-        subtitles: options.subtitles,
-        subLang: options.subLang,
-        concurrency: options.concurrency,
-        concurrentFragments: options.fragments,
-      });
+      if (options.category) {
+        // Reutiliza downloadWithPersist para cada item do batch
+        for (const item of items) {
+          await downloadWithPersist(item.url, {
+            category: options.category,
+            quality: item.quality || options.quality,
+            audioOnly: item.audioOnly !== undefined ? item.audioOnly : options.audioOnly,
+            format: item.format || format,
+            outputDir: options.output,
+            subtitles: options.subtitles,
+            subLang: options.subLang,
+            concurrency: options.concurrency,
+            concurrentFragments: options.fragments,
+          }).catch(err => {
+            console.log(chalk.red(`  ❌ ${item.url}: ${err.message}`));
+          });
+        }
+      } else {
+        await downloadBatch(items, {
+          quality: options.quality,
+          audioOnly: options.audioOnly,
+          format,
+          outputDir: options.output,
+          subtitles: options.subtitles,
+          subLang: options.subLang,
+          concurrency: options.concurrency,
+          concurrentFragments: options.fragments,
+        });
+      }
     } catch (err) {
       console.log(chalk.red(`\n  ❌ ${err.message}\n`));
       process.exit(1);
@@ -150,15 +193,7 @@ program
     }
 
     try {
-      await downloadPlaylist(url, {
-        quality: options.quality,
-        audioOnly: options.audioOnly,
-        format: options.format || (options.audioOnly ? 'mp3' : 'mp4'),
-        outputDir: options.output,
-        category: options.category || null,
-        concurrency: options.concurrency,
-        concurrentFragments: options.fragments,
-      });
+      await runDownload(url, { ...options, format: options.format });
     } catch (err) {
       console.log(chalk.red(`\n  ❌ ${err.message}\n`));
       process.exit(1);
@@ -174,7 +209,6 @@ program
       console.log(chalk.red('\n  ❌ URL inválida.\n'));
       process.exit(1);
     }
-
     try {
       const info = await getVideoInfo(url);
       displayVideoInfo(info);
@@ -191,16 +225,13 @@ program
   .option('-l, --lang <idiomas>', 'Idiomas das legendas', 'pt,en')
   .action(async (url, subOpts) => {
     const options = program.opts();
-
     if (!isValidYouTubeUrl(url)) {
       console.log(chalk.red('\n  ❌ URL inválida.\n'));
       process.exit(1);
     }
-
     try {
       const subsInfo = await listSubtitles(url);
       displaySubtitles(subsInfo);
-
       await downloadSubtitles(url, {
         lang: subOpts.lang || options.subLang,
         outputDir: options.output,

@@ -177,7 +177,7 @@ export async function downloadVideo(url, options = {}) {
       console.log(chalk.gray(`  📁 Salvo em: ${expectedFile}\n`));
     }
 
-    return { success: true, file: expectedFile, title: info.title, channel: info.channel };
+    return { success: true, file: expectedFile, title: info.title, channel: info.channel, youtubeId: info.id, duration: info.duration || null };
   } catch (err) {
     if (progressStarted) {
       progressBar.stop();

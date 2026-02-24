@@ -1,8 +1,12 @@
 import { Router } from 'express';
 import { unlinkSync, existsSync } from 'fs';
-import { listVideos, getVideo, insertVideo, deleteVideo, updateVideo } from '../db.js';
-import { downloadVideo } from '../../downloader.js';
-import { validateCategory, validateFormat, validateQuality, isValidYouTubeUrl } from '../../validators.js';
+import { listVideos, getVideo, deleteVideo } from '../db.js';
+import { downloadWithPersist } from '../../downloader-db.js';
+import {
+  validateCategory, validateFormat, validateQuality,
+  isValidYouTubeUrl, isPlaylistUrl,
+  VALID_CATEGORIES,
+} from '../../validators.js';
 
 const router = Router();
 
@@ -30,15 +34,40 @@ router.get('/:id', (req, res) => {
 });
 
 // ─── POST /api/videos ─────────────────────────────────────────────
-// Body: { url, category, format?, audioOnly?, quality? }
+/**
+ * Mesmas opções da CLI:
+ * {
+ *   url:          string   — vídeo ou playlist  (obrigatório)
+ *   category:     string   — Histórias | Músicas | Educação | Desenhos (obrigatório)
+ *   quality?:     string   — high | medium | low   (default: high)
+ *   audioOnly?:   boolean                          (default: false)
+ *   format?:      string   — mp4 | mkv | webm | mp3 | wav | aac | flac (default: mp4)
+ *   subtitles?:   boolean                          (default: false)
+ *   subLang?:     string   — ex: "pt,en"           (default: pt,en)
+ *   concurrency?: number   — downloads paralelos   (default: 3)
+ *   fragments?:   number   — fragmentos por vídeo  (default: 4)
+ *   outputDir?:   string                           (default: ./downloads)
+ * }
+ */
 router.post('/', async (req, res) => {
-  const { url, category, format = 'mp4', audioOnly = false, quality = 'high' } = req.body || {};
+  const {
+    url,
+    category,
+    quality = 'high',
+    audioOnly = false,
+    format = audioOnly ? 'mp3' : 'mp4',
+    subtitles = false,
+    subLang = 'pt,en',
+    concurrency = 3,
+    fragments = 4,
+    outputDir = './downloads',
+  } = req.body || {};
 
-  // Validações
+  // ── Validações ───────────────────────────────────────────────────
   if (!url) return res.status(400).json({ ok: false, error: 'Campo "url" é obrigatório' });
   if (!category) return res.status(400).json({ ok: false, error: 'Campo "category" é obrigatório' });
 
-  if (!isValidYouTubeUrl(url))
+  if (!isValidYouTubeUrl(url) && !isPlaylistUrl(url))
     return res.status(400).json({ ok: false, error: 'URL do YouTube inválida' });
 
   try { validateCategory(category); }
@@ -50,43 +79,31 @@ router.post('/', async (req, res) => {
   try { validateQuality(quality); }
   catch (e) { return res.status(400).json({ ok: false, error: e.message }); }
 
-  // Inserir no banco com status 'pending'
-  let video;
-  try {
-    video = insertVideo({ url, category, format, audioOnly, quality });
-  } catch (err) {
-    return res.status(500).json({ ok: false, error: err.message });
-  }
+  // ── Responde imediatamente, download roda em background ──────────
+  res.status(202).json({
+    ok: true,
+    message: isPlaylistUrl(url) && !isValidYouTubeUrl(url)
+      ? 'Playlist registrada — downloads iniciados em background'
+      : 'Download iniciado em background',
+    hint: 'Consulte GET /api/videos para acompanhar o status',
+  });
 
-  // Responde imediatamente, download roda em background
-  res.status(202).json({ ok: true, data: video, message: 'Download iniciado em background' });
-
-  // Dispara download assíncrono
-  updateVideo(video.id, { status: 'downloading' });
-
-  downloadVideo(url, {
+  // ── Dispara download + persistência ──────────────────────────────
+  downloadWithPersist(url, {
+    category,
     quality,
     audioOnly,
     format,
-    outputDir: './downloads',
-    category,
+    outputDir,
+    subtitles,
+    subLang,
+    concurrency,
+    concurrentFragments: fragments,
     silent: true,
-  })
-    .then((result) => {
-      updateVideo(video.id, {
-        status: 'done',
-        title: result.title,
-        channel: result.channel,
-        file_path: result.file,
-        downloaded_at: new Date().toISOString(),
-      });
-    })
-    .catch((err) => {
-      updateVideo(video.id, {
-        status: 'error',
-        error_msg: err.message,
-      });
-    });
+  }).catch(err => {
+    // Erro já foi persistido no banco por downloadWithPersist
+    console.error(`[API] Erro no download: ${err.message}`);
+  });
 });
 
 // ─── DELETE /api/videos/:id ──────────────────────────────────────
@@ -96,7 +113,6 @@ router.delete('/:id', (req, res) => {
     const video = getVideo(Number(req.params.id));
     if (!video) return res.status(404).json({ ok: false, error: 'Vídeo não encontrado' });
 
-    // Remover arquivo do disco se solicitado
     if (req.query.deleteFile === 'true' && video.file_path) {
       try {
         if (existsSync(video.file_path)) unlinkSync(video.file_path);
