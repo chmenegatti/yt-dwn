@@ -1,0 +1,38 @@
+{
+  "name": "yt-dwn",
+  "version": "1.0.0",
+  "description": "CLI para download de vídeos do YouTube com suporte a playlists, conversão de formatos, legendas e modo interativo",
+  "type": "module",
+  "main": "bin/yt-dwn.js",
+  "bin": {
+    "yt-dwn": "./bin/yt-dwn.js"
+  },
+  "scripts": {
+    "start": "node bin/yt-dwn.js",
+    "setup": "npm install --ignore-scripts",
+    "api": "node src/api/server.js",
+    "dev:api": "node --watch src/api/server.js"
+  },
+  "keywords": [
+    "youtube",
+    "download",
+    "cli",
+    "yt-dlp",
+    "video",
+    "audio"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@inquirer/prompts": "^7.4.0",
+    "better-sqlite3": "^12.6.2",
+    "chalk": "^5.4.1",
+    "cli-progress": "^3.12.0",
+    "commander": "^13.1.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "fluent-ffmpeg": "^2.1.3",
+    "ora": "^8.2.0",
+    "youtube-dl-exec": "^3.0.12"
+  }
+}
