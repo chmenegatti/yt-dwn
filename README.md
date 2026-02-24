@@ -161,13 +161,15 @@ A API permite que um front-end gerencie e acompanhe os vídeos baixados.
 ### Iniciar
 
 ```bash
-npm run api        # porta 3000
+npm run api        # porta 3005
 npm run dev:api    # com hot reload
 ```
 
 A porta pode ser alterada via variável de ambiente: `PORT=4000 npm run api`
 
 O banco de dados SQLite é criado automaticamente em `data/videos.db`.
+
+> A CLI com `-C` também registra no banco — o front-end enxerga downloads feitos tanto pela API quanto pela CLI.
 
 ### Endpoints
 
@@ -177,46 +179,77 @@ O banco de dados SQLite é criado automaticamente em `data/videos.db`.
 | GET | `/api/categories` | Lista as categorias disponíveis |
 | GET | `/api/videos` | Lista vídeos (`?category=&status=`) |
 | GET | `/api/videos/:id` | Detalhes de um vídeo |
-| POST | `/api/videos` | Adiciona vídeo e inicia download |
+| GET | `/api/videos/:id/events` | **SSE** — Eventos de progresso em tempo real |
+| POST | `/api/videos` | Adiciona vídeo **ou playlist** e inicia download |
 | DELETE | `/api/videos/:id` | Remove do banco (`?deleteFile=true` apaga o arquivo) |
+
+### Corpo do POST `/api/videos`
+
+Mesmas opções da CLI:
+
+| Campo | Tipo | Obrig. | Default | Descrição |
+|-------|------|--------|---------|----------|
+| `url` | string | ✅ | — | URL de vídeo **ou playlist** |
+| `category` | string | ✅ | — | `Histórias` · `Músicas` · `Educação` · `Desenhos` |
+| `quality` | string | | `high` | `high` · `medium` · `low` |
+| `audioOnly` | boolean | | `false` | Apenas áudio |
+| `format` | string | | `mp4` | `mp4` · `mkv` · `webm` · `mp3` · `wav` · `aac` · `flac` |
+| `subtitles` | boolean | | `false` | Baixar legendas |
+| `subLang` | string | | `pt,en` | Idiomas das legendas |
+| `concurrency` | number | | `3` | Downloads paralelos (playlist) |
+| `fragments` | number | | `4` | Fragmentos paralelos por vídeo |
+| `outputDir` | string | | `./downloads` | Diretório de saída |
 
 ### Exemplos
 
 ```bash
-# Listar categorias
-curl http://localhost:3000/api/categories
-
-# Iniciar download (resposta imediata 202, download em background)
-curl -X POST http://localhost:3000/api/videos \
+# Vídeo simples
+curl -X POST http://localhost:3005/api/videos \
   -H "Content-Type: application/json" \
   -d '{"url":"https://youtu.be/VIDEO_ID","category":"Músicas","quality":"high"}'
 
-# Listar vídeos concluídos de uma categoria
-curl "http://localhost:3000/api/videos?category=Músicas&status=done"
+# Playlist inteira (cria um registro por vídeo)
+curl -X POST http://localhost:3005/api/videos \
+  -H "Content-Type: application/json" \
+  -d '{"url":"https://www.youtube.com/playlist?list=PLAYLIST_ID","category":"Educação","concurrency":4}'
+
+# Listar vídeos concluídos
+curl "http://localhost:3005/api/videos?category=Músicas&status=done"
 
 # Remover vídeo e arquivo do disco
-curl -X DELETE "http://localhost:3000/api/videos/1?deleteFile=true"
+curl -X DELETE "http://localhost:3005/api/videos/1?deleteFile=true"
 ```
+
+### Acompanhando o Progresso (SSE)
+
+Para exibir uma barra de progresso em tempo real no front-end, conecte-se ao endpoint `/events`:
+
+```javascript
+const videoId = 1;
+const eventSource = new EventSource(`http://localhost:3005/api/videos/${videoId}/events`);
+
+eventSource.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  
+  if (data.type === 'progress') {
+    console.log(`Progresso: ${data.percent}% | Vel: ${data.speed} | ETA: ${data.eta}`);
+  } else if (data.type === 'log') {
+    console.log(`[${data.level}] ${data.message}`);
+  } else if (data.type === 'done' || data.type === 'error') {
+    console.log('Download finalizado:', data);
+    eventSource.close();
+  }
+};
+```
+
+> **Logs de Infraestrutura:** A API não armazena logs detalhados de extração no banco de dados. Os logs de progresso e FFmpeg são impressos em `stdout` no formato JSON, ideal para serem capturados e visualizados via stack como Promtail/Loki/Grafana.
 
 ### Status do vídeo
 
-Um vídeo passa pelos seguintes estados após o `POST`:
 
 ```
 pending → downloading → done
                       ↘ error
-```
-
-### Corpo do POST `/api/videos`
-
-```json
-{
-  "url":      "https://youtu.be/VIDEO_ID",  // obrigatório
-  "category": "Músicas",                    // obrigatório
-  "quality":  "high",                       // opcional (high | medium | low)
-  "format":   "mp4",                        // opcional
-  "audioOnly": false                        // opcional
-}
 ```
 
 ---

@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { unlinkSync, existsSync } from 'fs';
 import { listVideos, getVideo, deleteVideo } from '../db.js';
 import { downloadWithPersist } from '../../downloader-db.js';
+import emitter from '../events.js';
+import logger from '../logger.js';
 import {
   validateCategory, validateFormat, validateQuality,
   isValidYouTubeUrl, isPlaylistUrl,
@@ -101,8 +103,7 @@ router.post('/', async (req, res) => {
     concurrentFragments: fragments,
     silent: true,
   }).catch(err => {
-    // Erro já foi persistido no banco por downloadWithPersist
-    console.error(`[API] Erro no download: ${err.message}`);
+    logger.error({ level: 'error' }, `[API] Erro no download: ${err.message}`);
   });
 });
 
@@ -124,6 +125,49 @@ router.delete('/:id', (req, res) => {
   } catch (err) {
     res.status(500).json({ ok: false, error: err.message });
   }
+});
+
+// ─── GET /api/videos/:id/events (SSE) ────────────────────────────
+router.get('/:id/events', (req, res) => {
+  const videoId = Number(req.params.id);
+  const video = getVideo(videoId);
+
+  if (!video) {
+    return res.status(404).json({ ok: false, error: 'Vídeo não encontrado' });
+  }
+
+  // Headers obrigatórios para SSE
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+  });
+
+  // Envia status inicial para confirmar conexão
+  res.write(`data: ${JSON.stringify({ type: 'connected', videoId, status: video.status })}\n\n`);
+
+  // Se já terminou ou deu erro, avisa e fecha
+  if (video.status === 'done' || video.status === 'error') {
+    res.write(`data: ${JSON.stringify({ type: video.status, message: 'Processo já finalizado' })}\n\n`);
+    res.end();
+    return;
+  }
+
+  // Listener para eventos de progresso deste vídeo
+  const eventName = `video:${videoId}`;
+  const listener = (data) => {
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+    if (data.type === 'done' || data.type === 'error') {
+      res.end(); // fecha a conexão quando terminar
+    }
+  };
+
+  emitter.on(eventName, listener);
+
+  // Limpa listener quando o cliente desconectar
+  req.on('close', () => {
+    emitter.off(eventName, listener);
+  });
 });
 
 export default router;

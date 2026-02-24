@@ -38,6 +38,8 @@ export async function downloadVideo(url, options = {}) {
     subLang = 'pt,en',
     concurrentFragments = 4,
     silent = false,
+    onProgress = null,   // ({ percent, speed, eta }) => void
+    onLog = null,        // (message, level) => void
   } = options;
 
   // Primeiro buscar info do vídeo para organização
@@ -125,16 +127,18 @@ export async function downloadVideo(url, options = {}) {
       if (progressMatch) {
         const percent = parseFloat(progressMatch[1]);
         const speed = progressMatch[3];
+        const eta = progressMatch[4];
 
-        if (!progressStarted) {
+        if (!progressStarted && !silent) {
           progressBar.start(100, 0, { speed: 'Iniciando...', eta_formatted: '--:--' });
           progressStarted = true;
         }
 
-        progressBar.update(Math.floor(percent), {
-          speed: speed,
-          eta_formatted: progressMatch[4],
-        });
+        if (!silent) {
+          progressBar.update(Math.floor(percent), { speed, eta_formatted: eta });
+        }
+
+        if (onProgress) onProgress({ percent: Math.floor(percent), speed, eta });
       }
 
       // Detectar conclusão do download
@@ -144,6 +148,7 @@ export async function downloadVideo(url, options = {}) {
           progressBar.stop();
           progressStarted = false;
         }
+        if (onProgress) onProgress({ percent: 100, speed: 'Concluído', eta: '00:00' });
       }
 
       // Mostrar etapas de merge/conversão
@@ -152,7 +157,9 @@ export async function downloadVideo(url, options = {}) {
           progressBar.stop();
           progressStarted = false;
         }
-        console.log(chalk.yellow(`  ⚙️  ${line.trim()}`));
+        const msg = line.trim();
+        if (!silent) console.log(chalk.yellow(`  ⚙️  ${msg}`));
+        if (onLog) onLog(msg, 'info');
       }
     });
 

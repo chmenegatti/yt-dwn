@@ -42,6 +42,7 @@ db.exec(`
   );
 `);
 
+
 // Migração silenciosa: adiciona colunas novas se o banco já existia
 const existingCols = db.prepare("PRAGMA table_info(videos)").all().map(c => c.name);
 const migrations = [
@@ -114,3 +115,4 @@ export function deleteVideo(id) {
 }
 
 export default db;
+

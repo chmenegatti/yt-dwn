@@ -4,7 +4,7 @@ import videosRouter from './routes/videos.js';
 import categoriesRouter from './routes/categories.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 
 // ─── Middlewares ──────────────────────────────────────────────────
 app.use(cors());
