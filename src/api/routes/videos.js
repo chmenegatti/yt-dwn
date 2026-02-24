@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { unlinkSync, existsSync } from 'fs';
+import { unlinkSync, existsSync, statSync, createReadStream } from 'fs';
 import { listVideos, getVideo, deleteVideo } from '../db.js';
 import { downloadWithPersist } from '../../downloader-db.js';
 import emitter from '../events.js';
@@ -168,6 +168,72 @@ router.get('/:id/events', (req, res) => {
   req.on('close', () => {
     emitter.off(eventName, listener);
   });
+});
+
+// ─── GET /api/videos/:id/stream ──────────────────────────────────
+router.get('/:id/stream', (req, res) => {
+  try {
+    const videoId = Number(req.params.id);
+    const video = getVideo(videoId);
+
+    if (!video) return res.status(404).json({ ok: false, error: 'Vídeo não encontrado' });
+    if (!video.file_path || !existsSync(video.file_path)) {
+      return res.status(404).json({ ok: false, error: 'Arquivo de vídeo não encontrado no disco' });
+    }
+
+    const { file_path: filePath } = video;
+    const stat = statSync(filePath);
+    const fileSize = stat.size;
+    const range = req.headers.range;
+
+    // Mapa simples de mime-type baseado na extensão (o formato do db armazena a ext)
+    const ext = video.format.toLowerCase();
+    const mimeTypes = {
+      'mp4': 'video/mp4',
+      'webm': 'video/webm',
+      'mkv': 'video/x-matroska',
+      'mp3': 'audio/mpeg',
+      'wav': 'audio/wav',
+      'aac': 'audio/aac',
+      'flac': 'audio/flac',
+    };
+    const contentType = mimeTypes[ext] || 'application/octet-stream';
+
+    if (range) {
+      // Pedido de streaming em chunks (Range request)
+      const parts = range.replace(/bytes=/, "").split("-");
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+
+      if (start >= fileSize) {
+        res.status(416).send('Requested range not satisfiable\n' + start + ' >= ' + fileSize);
+        return;
+      }
+
+      const chunksize = (end - start) + 1;
+      const file = createReadStream(filePath, { start, end });
+      const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': contentType,
+      };
+
+      res.writeHead(206, head);
+      file.pipe(res);
+    } else {
+      // Enviar o arquivo inteiro de uma vez (download normal sem streaming bufferizado, não recomendado pra `<video>`)
+      const head = {
+        'Content-Length': fileSize,
+        'Content-Type': contentType,
+      };
+      res.writeHead(200, head);
+      createReadStream(filePath).pipe(res);
+    }
+  } catch (err) {
+    logger.error({ level: 'error' }, `[API Stream] Erro ao servir vídeo: ${err.message}`);
+    res.status(500).json({ ok: false, error: err.message });
+  }
 });
 
 export default router;

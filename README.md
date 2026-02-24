@@ -179,6 +179,7 @@ O banco de dados SQLite é criado automaticamente em `data/videos.db`.
 | GET | `/api/categories` | Lista as categorias disponíveis |
 | GET | `/api/videos` | Lista vídeos (`?category=&status=`) |
 | GET | `/api/videos/:id` | Detalhes de um vídeo |
+| GET | `/api/videos/:id/stream` | **Streaming** — Transmitir arquivo via HTTP 206 (Range) |
 | GET | `/api/videos/:id/events` | **SSE** — Eventos de progresso em tempo real |
 | POST | `/api/videos` | Adiciona vídeo **ou playlist** e inicia download |
 | DELETE | `/api/videos/:id` | Remove do banco (`?deleteFile=true` apaga o arquivo) |
@@ -243,6 +244,19 @@ eventSource.onmessage = (event) => {
 ```
 
 > **Logs de Infraestrutura:** A API não armazena logs detalhados de extração no banco de dados. Os logs de progresso e FFmpeg são impressos em `stdout` no formato JSON, ideal para serem capturados e visualizados via stack como Promtail/Loki/Grafana.
+
+### Streaming de Vídeo HTML5
+
+Para não carregar o vídeo inteiro na RAM no back-end ou front-end de uma só vez, a API suporta **Range Requests** (`HTTP 206 Partial Content`).
+
+No seu front-end (React, Vue, ou HTML puro), basta usar a rota `/stream` diretamente na tag `<video>`:
+
+```html
+<video controls width="100%">
+  <source src="http://localhost:3005/api/videos/1/stream" type="video/mp4" />
+</video>
+```
+O servidor vai cuidar de ler apenas os blocos ('chunks') solicitados pelo player e fazer o "pipe" eficiente direto para a requisição.
 
 ### Status do vídeo
 
