@@ -5,12 +5,12 @@
  * Logs são impressos em StdOut no formato JSON para Grafana/Loki.
  * Logs JSON agora são gerados via Pino (stdout + data/yt-dwn.log) para Grafana/Loki.
  */
-import { insertVideo, updateVideo, deleteVideo } from './api/db.js';
+import { insertVideo, updateVideo, deleteVideo, findVideoByYoutubeId, findVideoByTitle } from './api/db.js';
 import { emitVideoEvent } from './api/events.js';
 import logger from './api/logger.js';
 import { downloadVideo } from './downloader.js';
 import { getPlaylistInfo } from './playlists.js';
-import { isPlaylistUrl, isValidYouTubeUrl } from './validators.js';
+import { isPlaylistUrl, isValidYouTubeUrl, extractVideoId } from './validators.js';
 
 /**
  * Faz download de uma URL (vídeo ou playlist) com persistência + eventos.
@@ -39,11 +39,52 @@ export async function downloadWithPersist(url, opts = {}) {
   if (isPlaylistUrl(url) && !isValidYouTubeUrl(url)) {
     const playlistInfo = await getPlaylistInfo(url);
     const records = [];
+    const skipped = [];
+    const seenIdsInPlaylist = new Set();
+    const seenTitlesInPlaylist = new Set();
 
     for (const entry of playlistInfo.entries) {
       const videoUrl = entry.url.startsWith('http')
         ? entry.url
         : `https://www.youtube.com/watch?v=${entry.id}`;
+
+      const ytId = entry.id || extractVideoId(videoUrl);
+      const title = entry.title?.trim();
+
+      // Duplicata por ID dentro da própria playlist
+      if (seenIdsInPlaylist.has(ytId)) {
+        logger.warn({ youtubeId: ytId }, `Duplicado na playlist (ID) — "${title || ytId}" aparece mais de uma vez, pulando`);
+        skipped.push(entry);
+        continue;
+      }
+      seenIdsInPlaylist.add(ytId);
+
+      // Duplicata por título dentro da própria playlist (IDs diferentes, mesmo vídeo)
+      if (title && seenTitlesInPlaylist.has(title)) {
+        logger.warn({ youtubeId: ytId, title }, `Duplicado na playlist (título) — "${title}" já apareceu com outro ID, pulando`);
+        skipped.push(entry);
+        continue;
+      }
+      if (title) seenTitlesInPlaylist.add(title);
+
+      // Duplicata por ID já baixada anteriormente
+      const existingById = findVideoByYoutubeId(ytId);
+      if (existingById) {
+        logger.warn({ youtubeId: ytId, existingId: existingById.id }, `Duplicado — "${existingById.title || ytId}" já foi baixado (registro #${existingById.id}), pulando`);
+        skipped.push(entry);
+        continue;
+      }
+
+      // Duplicata por título já baixada anteriormente
+      if (title) {
+        const existingByTitle = findVideoByTitle(title);
+        if (existingByTitle) {
+          logger.warn({ youtubeId: ytId, existingId: existingByTitle.id, title }, `Duplicado (título) — "${title}" já foi baixado (registro #${existingByTitle.id}), pulando`);
+          skipped.push(entry);
+          continue;
+        }
+      }
+
       const record = insertVideo({ url: videoUrl, ...commonInsert });
 
       const logMsg = `Enfileirado: ${entry.title || videoUrl}`;
@@ -51,6 +92,15 @@ export async function downloadWithPersist(url, opts = {}) {
 
       emitVideoEvent(record.id, 'log', { message: `Enfileirado na playlist "${playlistInfo.title}"` });
       records.push({ record, entry });
+    }
+
+    if (skipped.length > 0) {
+      logger.info(`${skipped.length} vídeo(s) da playlist já baixado(s), ignorados`);
+    }
+
+    if (records.length === 0) {
+      logger.info('Todos os vídeos da playlist já foram baixados');
+      return [];
     }
 
     await runBatchWithPersist(records.map(({ record, entry }) => ({
@@ -64,6 +114,18 @@ export async function downloadWithPersist(url, opts = {}) {
   }
 
   // ── Vídeo único ──────────────────────────────────────────────────
+  const ytId = extractVideoId(url);
+  const existing = findVideoByYoutubeId(ytId);
+  if (existing) {
+    const msg = `Duplicado — "${existing.title || ytId}" já foi baixado (registro #${existing.id})`;
+    logger.warn({ youtubeId: ytId, existingId: existing.id }, msg);
+    if (!silent) {
+      const chalk = (await import('chalk')).default;
+      console.log(chalk.yellow(`\n  ⚠️  ${msg}\n`));
+    }
+    return [];
+  }
+
   const record = insertVideo({ url, ...commonInsert });
   return [await downloadOneWithPersist(url, record.id, {
     quality, audioOnly, format, outputDir, category, subtitles, subLang, concurrentFragments, silent,

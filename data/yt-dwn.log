@@ -349,3 +349,5 @@
 {"level":30,"time":1772023218286,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 75% — 31.33MiB/s"}
 {"level":30,"time":1772023218481,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 100% — Concluído"}
 {"level":30,"time":1772023218780,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Meu,_Seu,_Nosso_[clipe_infantil].mp4"}
+{"level":30,"time":1772023637144,"pid":407564,"hostname":"spon010156824","method":"GET","url":"/api/videos?status=done","status":200,"ms":2,"msg":"GET /api/videos?status=done → 200 (2ms)"}
+{"level":40,"time":1772028020785,"pid":423984,"hostname":"spon010156824","youtubeId":"KV4zYYUasLs","existingId":93,"msg":"Duplicado — \"Hoje é Dia de Museu! - Mundo Bita + Instituto Ricardo Brennand [clipe infantil]\" já foi baixado (registro #93)"}

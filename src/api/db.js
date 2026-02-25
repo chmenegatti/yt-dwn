@@ -72,6 +72,24 @@ export function getVideo(id) {
   return db.prepare('SELECT * FROM videos WHERE id = ?').get(id);
 }
 
+/**
+ * Busca um vídeo já baixado (status=done) pelo youtube_id.
+ * Retorna o registro ou undefined se não existir.
+ */
+export function findVideoByYoutubeId(youtubeId) {
+  if (!youtubeId) return undefined;
+  return db.prepare('SELECT * FROM videos WHERE youtube_id = ? AND status = ?').get(youtubeId, 'done');
+}
+
+/**
+ * Busca um vídeo já baixado (status=done) pelo título.
+ * Retorna o registro ou undefined se não existir.
+ */
+export function findVideoByTitle(title) {
+  if (!title) return undefined;
+  return db.prepare('SELECT * FROM videos WHERE title = ? AND status = ?').get(title, 'done');
+}
+
 export function insertVideo({
   url,
   category,
