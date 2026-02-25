@@ -3,3 +3,4 @@ downloads/
 data/videos.db
 data/videos.db-shm
 data/videos.db-wal
+*.log
