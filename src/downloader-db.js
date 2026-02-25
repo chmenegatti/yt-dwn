@@ -5,7 +5,7 @@
  * Logs são impressos em StdOut no formato JSON para Grafana/Loki.
  * Logs JSON agora são gerados via Pino (stdout + data/yt-dwn.log) para Grafana/Loki.
  */
-import { insertVideo, updateVideo } from './api/db.js';
+import { insertVideo, updateVideo, deleteVideo } from './api/db.js';
 import { emitVideoEvent } from './api/events.js';
 import logger from './api/logger.js';
 import { downloadVideo } from './downloader.js';
@@ -112,8 +112,9 @@ async function downloadOneWithPersist(url, dbId, opts) {
 
     return dbId;
   } catch (err) {
-    updateVideo(dbId, { status: 'error', error_msg: err.message });
-    logger.error({ videoId: dbId, level: 'error' }, err.message);
+    // Remove o registro do banco — downloads com falha não devem ser persistidos
+    deleteVideo(dbId);
+    logger.error({ videoId: dbId, level: 'error' }, `Falha ao baixar: ${err.message}`);
     emitVideoEvent(dbId, 'error', { message: err.message });
     throw err;
   }

@@ -86,3 +86,266 @@
 {"level":30,"time":1772022386190,"pid":395064,"hostname":"spon010156824","videoId":92,"level":"progress","msg":"Progresso: 100% — 31.49MiB/s"}
 {"level":30,"time":1772022386209,"pid":395064,"hostname":"spon010156824","videoId":92,"level":"progress","msg":"Progresso: 100% — Concluído"}
 {"level":30,"time":1772022386256,"pid":395064,"hostname":"spon010156824","videoId":92,"level":"progress","msg":"Progresso: 0% — 172.60KiB/s"}
+{"level":30,"time":1772022825920,"pid":403389,"hostname":"spon010156824","videoId":1,"msg":"Teste de log"}
+{"level":40,"time":1772022825924,"pid":403389,"hostname":"spon010156824","method":"GET","url":"/api/videos","msg":"GET /api/videos → 200 (5ms)"}
+{"level":50,"time":1772022825924,"pid":403389,"hostname":"spon010156824","videoId":2,"msg":"Falha ao baixar"}
+{"level":30,"time":1772023059107,"pid":404427,"hostname":"spon010156824","method":"GET","url":"/api/videos?status=done","status":200,"ms":4,"msg":"GET /api/videos?status=done → 200 (4ms)"}
+{"level":30,"time":1772023066659,"pid":404427,"hostname":"spon010156824","method":"GET","url":"/api/health","status":200,"ms":1,"msg":"GET /api/health → 200 (1ms)"}
+{"level":40,"time":1772023066670,"pid":404427,"hostname":"spon010156824","method":"GET","url":"/api/nope","status":404,"ms":1,"msg":"GET /api/nope → 404 (1ms)"}
+{"level":30,"time":1772023075165,"pid":404427,"hostname":"spon010156824","method":"GET","url":"/api/videos?status=done","status":200,"ms":3,"msg":"GET /api/videos?status=done → 200 (3ms)"}
+{"level":30,"time":1772023108075,"pid":406914,"hostname":"spon010156824","method":"GET","url":"/api/videos?status=done","status":200,"ms":3,"msg":"GET /api/videos?status=done → 200 (3ms)"}
+{"level":30,"time":1772023133054,"pid":407564,"hostname":"spon010156824","method":"GET","url":"/api/videos","status":200,"ms":3,"msg":"GET /api/videos → 200 (3ms)"}
+{"level":30,"time":1772023165227,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"info","msg":"Enfileirado: Hoje é Dia de Museu! - Mundo Bita + Instituto Ricardo Brennand [clipe infantil]"}
+{"level":30,"time":1772023165230,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"info","msg":"Enfileirado: Mundo Bita - Tarefa de Casa"}
+{"level":30,"time":1772023165231,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"info","msg":"Enfileirado: Mundo Bita - Aos Nossos Professores"}
+{"level":30,"time":1772023165231,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"info","msg":"Enfileirado: Mundo Bita - Criança Rima Com Educação"}
+{"level":30,"time":1772023165231,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"info","msg":"Enfileirado: Mundo Bita - Página por Página"}
+{"level":30,"time":1772023165232,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"info","msg":"Enfileirado: Mundo Bita - Querida Chupeta, Bye-Bye"}
+{"level":30,"time":1772023165232,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"info","msg":"Enfileirado: Mundo Bita - Cada Coisa Tem Seu Formato"}
+{"level":30,"time":1772023165232,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"info","msg":"Enfileirado: Mundo Bita - Magia das Cores [clipe infantil]"}
+{"level":30,"time":1772023165233,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"info","msg":"Enfileirado: Mundo Bita - Mãe Música ft. Vanessa da Mata"}
+{"level":30,"time":1772023165233,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"info","msg":"Enfileirado: Mundo Bita - Matemagicamente ft. Casuarina"}
+{"level":30,"time":1772023165233,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"info","msg":"Enfileirado: Mundo Bita - Alfabita [clipe infantil]"}
+{"level":30,"time":1772023165233,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"info","msg":"Enfileirado: Mundo Bita - Meu, Seu, Nosso [clipe infantil]"}
+{"level":30,"time":1772023165234,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023165236,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023165239,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023173670,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 0% — 198.13KiB/s"}
+{"level":30,"time":1772023173671,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 0% — 541.11KiB/s"}
+{"level":30,"time":1772023173676,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 0% — 4.41MiB/s"}
+{"level":30,"time":1772023173701,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 0% — 176.59KiB/s"}
+{"level":30,"time":1772023173702,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 0% — 489.44KiB/s"}
+{"level":30,"time":1772023173704,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 0% — 3.30MiB/s"}
+{"level":30,"time":1772023173709,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 0% — 4.28MiB/s"}
+{"level":30,"time":1772023173742,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023173743,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023173865,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 75% — 39.37MiB/s"}
+{"level":30,"time":1772023173951,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"progress","msg":"Progresso: 25% — 6.32MiB/s"}
+{"level":30,"time":1772023174032,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"progress","msg":"Progresso: 100% — 14.64MiB/s"}
+{"level":30,"time":1772023174033,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023174039,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Hoje_é_Dia_de_Museu!_-_Mundo_Bita_+_Instituto_Ricardo_Brennand_[clipe_infantil].mp4\""}
+{"level":30,"time":1772023174046,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 100% — 8.78MiB/s"}
+{"level":30,"time":1772023174052,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023174124,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 0% — 168.63KiB/s"}
+{"level":30,"time":1772023174125,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 0% — 470.04KiB/s"}
+{"level":30,"time":1772023174125,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 0% — 2.04MiB/s"}
+{"level":30,"time":1772023174204,"pid":407892,"hostname":"spon010156824","videoId":93,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Hoje_é_Dia_de_Museu!_-_Mundo_Bita_+_Instituto_Ricardo_Brennand_[clipe_infantil].mp4"}
+{"level":30,"time":1772023174205,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023174209,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 100% — 31.38MiB/s"}
+{"level":30,"time":1772023174209,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023174214,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Tarefa_de_Casa.mp4\""}
+{"level":30,"time":1772023174282,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 100% — 30.65MiB/s"}
+{"level":30,"time":1772023174285,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023174351,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 0% — 174.88KiB/s"}
+{"level":30,"time":1772023174352,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 0% — 474.74KiB/s"}
+{"level":30,"time":1772023174378,"pid":407892,"hostname":"spon010156824","videoId":94,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Tarefa_de_Casa.mp4"}
+{"level":30,"time":1772023174379,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023174530,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 100% — 16.72MiB/s"}
+{"level":30,"time":1772023174531,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023174538,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Aos_Nossos_Professores.mp4\""}
+{"level":30,"time":1772023174686,"pid":407892,"hostname":"spon010156824","videoId":95,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Aos_Nossos_Professores.mp4"}
+{"level":30,"time":1772023174686,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023182778,"pid":407564,"hostname":"spon010156824","method":"GET","url":"/api/videos?status=done","status":200,"ms":1,"msg":"GET /api/videos?status=done → 200 (1ms)"}
+{"level":30,"time":1772023183345,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 185.72KiB/s"}
+{"level":30,"time":1772023183345,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 511.63KiB/s"}
+{"level":30,"time":1772023183345,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 2.22MiB/s"}
+{"level":30,"time":1772023183345,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 4.32MiB/s"}
+{"level":30,"time":1772023183352,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 4.67MiB/s"}
+{"level":30,"time":1772023183378,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 177.31KiB/s"}
+{"level":30,"time":1772023183378,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 489.65KiB/s"}
+{"level":30,"time":1772023183379,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 1.05MiB/s"}
+{"level":30,"time":1772023183379,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 2.08MiB/s"}
+{"level":30,"time":1772023183380,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 3.89MiB/s"}
+{"level":30,"time":1772023183388,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 3.87MiB/s"}
+{"level":30,"time":1772023183435,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 73.93KiB/s"}
+{"level":30,"time":1772023183436,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 214.55KiB/s"}
+{"level":30,"time":1772023183436,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 488.23KiB/s"}
+{"level":30,"time":1772023183436,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 1021.36KiB/s"}
+{"level":30,"time":1772023183439,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 1.76MiB/s"}
+{"level":30,"time":1772023183457,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 1.80MiB/s"}
+{"level":30,"time":1772023183723,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 100% — 4.71MiB/s"}
+{"level":30,"time":1772023183729,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023183892,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 148.49KiB/s"}
+{"level":30,"time":1772023183893,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 408.55KiB/s"}
+{"level":30,"time":1772023183900,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 0% — 894.66KiB/s"}
+{"level":30,"time":1772023184049,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 100% — 14.25MiB/s"}
+{"level":30,"time":1772023184050,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023184059,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Página_por_Página.mp4\""}
+{"level":30,"time":1772023184075,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 100% — 16.56MiB/s"}
+{"level":30,"time":1772023184077,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023184117,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 178.34KiB/s"}
+{"level":30,"time":1772023184118,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 491.60KiB/s"}
+{"level":30,"time":1772023184118,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 1.06MiB/s"}
+{"level":30,"time":1772023184118,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 0% — 2.14MiB/s"}
+{"level":30,"time":1772023184123,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 100% — 11.75MiB/s"}
+{"level":30,"time":1772023184130,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023184201,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 98.14KiB/s"}
+{"level":30,"time":1772023184202,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 265.45KiB/s"}
+{"level":30,"time":1772023184202,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 0% — 1.20MiB/s"}
+{"level":30,"time":1772023184226,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 100% — 26.36MiB/s"}
+{"level":30,"time":1772023184230,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023184236,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Querida_Chupeta,_Bye-Bye.mp4\""}
+{"level":30,"time":1772023184313,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 100% — 25.32MiB/s"}
+{"level":30,"time":1772023184319,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023184333,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Criança_Rima_Com_Educação.mp4\""}
+{"level":30,"time":1772023184406,"pid":407892,"hostname":"spon010156824","videoId":97,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Página_por_Página.mp4"}
+{"level":30,"time":1772023184413,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023184906,"pid":407892,"hostname":"spon010156824","videoId":96,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Criança_Rima_Com_Educação.mp4"}
+{"level":30,"time":1772023184907,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023184939,"pid":407892,"hostname":"spon010156824","videoId":98,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Querida_Chupeta,_Bye-Bye.mp4"}
+{"level":30,"time":1772023184942,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023193701,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 205.18KiB/s"}
+{"level":30,"time":1772023193702,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 568.74KiB/s"}
+{"level":30,"time":1772023193702,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 2.46MiB/s"}
+{"level":30,"time":1772023193702,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 4.79MiB/s"}
+{"level":30,"time":1772023193708,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 5.26MiB/s"}
+{"level":30,"time":1772023193714,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 7.14MiB/s"}
+{"level":30,"time":1772023193942,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 75% — 439.53KiB/s"}
+{"level":30,"time":1772023193942,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 75% — 982.54KiB/s"}
+{"level":30,"time":1772023193943,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 75% — 1.92MiB/s"}
+{"level":30,"time":1772023193943,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 75% — 3.82MiB/s"}
+{"level":30,"time":1772023193949,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 75% — 4.40MiB/s"}
+{"level":30,"time":1772023193955,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 75% — 6.17MiB/s"}
+{"level":30,"time":1772023194033,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 100% — 34.02MiB/s"}
+{"level":30,"time":1772023194038,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023194080,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 180.98KiB/s"}
+{"level":30,"time":1772023194081,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 504.91KiB/s"}
+{"level":30,"time":1772023194081,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 1.09MiB/s"}
+{"level":30,"time":1772023194081,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 2.20MiB/s"}
+{"level":30,"time":1772023194082,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 0% — 4.17MiB/s"}
+{"level":30,"time":1772023194171,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 100% — 36.33MiB/s"}
+{"level":30,"time":1772023194174,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023194184,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Cada_Coisa_Tem_Seu_Formato.mp4\""}
+{"level":30,"time":1772023194196,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 205.58KiB/s"}
+{"level":30,"time":1772023194197,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 566.67KiB/s"}
+{"level":30,"time":1772023194197,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 1.22MiB/s"}
+{"level":30,"time":1772023194197,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 2.46MiB/s"}
+{"level":30,"time":1772023194199,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 3.66MiB/s"}
+{"level":30,"time":1772023194204,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 4.79MiB/s"}
+{"level":30,"time":1772023194210,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 6.73MiB/s"}
+{"level":30,"time":1772023194326,"pid":407892,"hostname":"spon010156824","videoId":99,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Cada_Coisa_Tem_Seu_Formato.mp4"}
+{"level":30,"time":1772023194326,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023194480,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 75% — 11.92MiB/s"}
+{"level":30,"time":1772023194542,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 100% — 36.42MiB/s"}
+{"level":30,"time":1772023194549,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023194597,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 171.91KiB/s"}
+{"level":30,"time":1772023194597,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 481.64KiB/s"}
+{"level":30,"time":1772023194598,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 1.02MiB/s"}
+{"level":30,"time":1772023194598,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 0% — 2.09MiB/s"}
+{"level":30,"time":1772023194678,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 100% — 33.27MiB/s"}
+{"level":30,"time":1772023194680,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023194692,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Magia_das_Cores_[clipe_infantil].mp4\""}
+{"level":30,"time":1772023194971,"pid":407892,"hostname":"spon010156824","videoId":100,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Magia_das_Cores_[clipe_infantil].mp4"}
+{"level":30,"time":1772023194972,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023195321,"pid":407564,"hostname":"spon010156824","method":"GET","url":"/api/videos?status=done","status":200,"ms":3,"msg":"GET /api/videos?status=done → 200 (3ms)"}
+{"level":30,"time":1772023199577,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 100% — 4.21KiB/s"}
+{"level":30,"time":1772023199920,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 25% — 21.25MiB/s"}
+{"level":30,"time":1772023199920,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 25% — 21.25MiB/s"}
+{"level":30,"time":1772023199921,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 25% — 21.25MiB/s"}
+{"level":30,"time":1772023199922,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 25% — 21.25MiB/s"}
+{"level":30,"time":1772023199923,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 25% — 21.25MiB/s"}
+{"level":30,"time":1772023199970,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 25% — 23.40MiB/s"}
+{"level":30,"time":1772023200010,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 25% — 25.24MiB/s"}
+{"level":30,"time":1772023200395,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200404,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200405,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200407,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200416,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200418,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200425,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200426,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.82MiB/s"}
+{"level":30,"time":1772023200433,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200441,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200443,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200443,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200446,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200447,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200448,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200451,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200461,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 50% — 29.00MiB/s"}
+{"level":30,"time":1772023200861,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 27.69MiB/s"}
+{"level":30,"time":1772023200868,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 27.69MiB/s"}
+{"level":30,"time":1772023200879,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200901,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200902,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200903,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200903,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200904,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200905,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200906,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023200907,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 75% — 28.01MiB/s"}
+{"level":30,"time":1772023201386,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 100% — 27.61MiB/s"}
+{"level":30,"time":1772023201402,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 100% — 27.61MiB/s"}
+{"level":30,"time":1772023201403,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 100% — 27.61MiB/s"}
+{"level":30,"time":1772023201407,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023201970,"pid":407892,"hostname":"spon010156824","videoId":101,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Mãe_Música_ft._Vanessa_da_Mata.mp4"}
+{"level":30,"time":1772023201971,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"info","msg":"Download iniciado"}
+{"level":30,"time":1772023204010,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 0% — 167.20KiB/s"}
+{"level":30,"time":1772023204011,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 0% — 449.89KiB/s"}
+{"level":30,"time":1772023204011,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 0% — 1.97MiB/s"}
+{"level":30,"time":1772023204017,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 0% — 4.53MiB/s"}
+{"level":30,"time":1772023204349,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 100% — 31.97MiB/s"}
+{"level":30,"time":1772023204351,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023204398,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 0% — 196.21KiB/s"}
+{"level":30,"time":1772023204399,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 0% — 489.38KiB/s"}
+{"level":30,"time":1772023204400,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 0% — 4.02MiB/s"}
+{"level":30,"time":1772023204494,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 100% — 35.85MiB/s"}
+{"level":30,"time":1772023204495,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023204504,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"info","msg":"[Merger] Merging formats into \"downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Alfabita_[clipe_infantil].mp4\""}
+{"level":30,"time":1772023204654,"pid":407892,"hostname":"spon010156824","videoId":103,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Alfabita_[clipe_infantil].mp4"}
+{"level":30,"time":1772023208362,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 100% — 3.63KiB/s"}
+{"level":30,"time":1772023208595,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208596,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208597,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208598,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208599,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208602,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208602,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208604,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208606,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208612,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208613,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208614,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 25% — 11.91MiB/s"}
+{"level":30,"time":1772023208878,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208879,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208882,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208882,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208883,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208883,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208884,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208884,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208884,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208885,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208885,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 18.96MiB/s"}
+{"level":30,"time":1772023208891,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208891,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208892,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208899,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208900,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208908,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208910,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208911,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 19.47MiB/s"}
+{"level":30,"time":1772023208942,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 50% — 20.06MiB/s"}
+{"level":30,"time":1772023209159,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209172,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209175,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209176,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209177,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209178,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209179,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209180,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209182,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209191,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 75% — 21.93MiB/s"}
+{"level":30,"time":1772023209426,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 100% — 22.51MiB/s"}
+{"level":30,"time":1772023209427,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 100% — 22.51MiB/s"}
+{"level":30,"time":1772023209433,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023209780,"pid":407892,"hostname":"spon010156824","videoId":102,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Matemagicamente_ft._Casuarina.mp4"}
+{"level":30,"time":1772023217569,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 100% — 5.63KiB/s"}
+{"level":30,"time":1772023217823,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 25% — 20.81MiB/s"}
+{"level":30,"time":1772023217826,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 25% — 20.81MiB/s"}
+{"level":30,"time":1772023217827,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 25% — 20.81MiB/s"}
+{"level":30,"time":1772023218284,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 75% — 31.33MiB/s"}
+{"level":30,"time":1772023218285,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 75% — 31.33MiB/s"}
+{"level":30,"time":1772023218286,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 75% — 31.33MiB/s"}
+{"level":30,"time":1772023218481,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"progress","msg":"Progresso: 100% — Concluído"}
+{"level":30,"time":1772023218780,"pid":407892,"hostname":"spon010156824","videoId":104,"level":"info","msg":"Concluído: downloads/Músicas/Mundo_Bita/Mundo_Bita_-_Meu,_Seu,_Nosso_[clipe_infantil].mp4"}

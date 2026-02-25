@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import videosRouter from './routes/videos.js';
 import categoriesRouter from './routes/categories.js';
+import logger from './logger.js';
 
 const app = express();
 const PORT = process.env.PORT || 3005;
@@ -9,6 +10,18 @@ const PORT = process.env.PORT || 3005;
 // ─── Middlewares ──────────────────────────────────────────────────
 app.use(cors());
 app.use(express.json());
+
+// Request logging — mostra cada requisição no terminal
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const ms = Date.now() - start;
+    const status = res.statusCode;
+    const level = status >= 500 ? 'error' : status >= 400 ? 'warn' : 'info';
+    logger[level]({ method: req.method, url: req.originalUrl, status, ms }, `${req.method} ${req.originalUrl} → ${status} (${ms}ms)`);
+  });
+  next();
+});
 
 // ─── Rotas ────────────────────────────────────────────────────────
 app.use('/api/videos', videosRouter);
